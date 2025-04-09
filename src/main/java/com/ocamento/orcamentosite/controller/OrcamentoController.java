@@ -1,8 +1,12 @@
 package com.ocamento.orcamentosite.controller;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
@@ -51,6 +56,29 @@ public class OrcamentoController {
             return new PageImpl<>( service.listarPorStatus( status ) );
         }
         return service.listarPaginado( page, size );
+    }
+
+    @PostMapping("/importar")
+    public ResponseEntity<String> importarCSV( @RequestParam("file") MultipartFile file ) {
+
+        try {
+            service.importarOrcamentos( file );
+            return ResponseEntity.ok( "Importação concluida com sucesso!" );
+        } catch( Exception e ) {
+            return ResponseEntity.status( HttpStatus.INTERNAL_SERVER_ERROR ).body( "Erro de importacao: " + e.getMessage() );
+        }
+    }
+
+    @GetMapping( "/exportar" ) 
+    public ResponseEntity<byte[]> exportarCSV() {
+        String csv = service.exportarOrcamentos();
+        byte[] csvBytes = csv.getBytes( StandardCharsets.UTF_8 );
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType( MediaType.TEXT_PLAIN );
+        headers.setContentDispositionFormData("attachment", "orcamentos.csv");
+    
+        return new ResponseEntity<>( csvBytes, headers, HttpStatus.OK );
     }
 
     @PutMapping( "/{id}/status" )
