@@ -1,6 +1,6 @@
-# 🧠 [Orça.Ai](http://xn--ora-3la.ai/)
+# 🧠 Orça.Ai
 
-[**Orça.Ai**](http://xn--ora-3la.ai/) é um sistema web para gerenciamento de pedidos de orçamento de serviços digitais, como criação de sites, sistemas, aplicativos, etc.
+**Orça.Ai** é um sistema web para gerenciamento de pedidos de orçamento de serviços digitais, como criação de sites, sistemas, aplicativos, etc.
 
 Ideal pra quem quer organizar os pedidos dos clientes de forma prática, rápida e automatizada!
 
