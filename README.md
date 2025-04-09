@@ -15,11 +15,11 @@ Ideal pra quem quer organizar os pedidos dos clientes de forma prática, rápida
 
 ## 🛠️ Tecnologias
 
-- **Backend**: Java 17, Spring Boot
+- **Backend**: Java 21, Spring Boot
 - **Banco de Dados**: PostgreSQL
 - **Frontend**: (em construção) — será feito com Bootstrap/Tailwind
 - **Gerenciador de DB**: DBeaver
-- **IDE recomendada**: IntelliJ ou VS Code
+- **IDE**: VS Code
 
 ## 🔧 Como rodar
 
